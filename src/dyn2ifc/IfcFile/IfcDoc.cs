@@ -21,7 +21,8 @@ namespace dyn2ifc.IfcFile
         /// <summary>
         /// Save ifc file from database-in-memory to file (ifc 2x3)
         /// </summary>
-        /// <param name="PathToSaveFile"></param>
+        /// <param name="directory_path">File path to directory where save file</param>
+        /// <param name="file_name">Name of ifc file to save without extension</param>
         /// <param name="Overwrite"></param>
         /// <param name="aux_order">Link with node InitIfcDatabase or other operation before it</param>
         [dr.IsVisibleInDynamoLibrary(true)]
@@ -47,6 +48,7 @@ namespace dyn2ifc.IfcFile
         {
             return new Dictionary<string, ModelView>()
             {
+
                 {"Ifc2x3Coordination", ModelView.Ifc2x3Coordination},
                 {"Ifc2x3NotAssigned", ModelView.Ifc2x3NotAssigned},
                 {"Ifc4DesignTransfer", ModelView.Ifc4DesignTransfer},
