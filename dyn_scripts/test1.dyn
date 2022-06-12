@@ -50,7 +50,7 @@
         {
           "Id": "6fde22b6076345cab9196af7402e10e2",
           "Name": "ifc_type",
-          "Description": "ModelView",
+          "Description": "Result of node ifc_document_specs\n\nModelView",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
@@ -59,7 +59,7 @@
         {
           "Id": "9954119334e64dff96aa2fc5bd56d096",
           "Name": "units",
-          "Description": "IfcUnitAssignment_Length",
+          "Description": "Result of node ifc_units\n\nIfcUnitAssignment_Length",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
@@ -70,7 +70,7 @@
         {
           "Id": "6a42ae2e1c7d42f9a2f0c97fc4aa3f12",
           "Name": "int",
-          "Description": "int",
+          "Description": "Arbitary integer value for linking with other node (create order for data)",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
@@ -78,7 +78,7 @@
         }
       ],
       "Replication": "Auto",
-      "Description": "IfcDoc.InitIfcDatabase (ifc_type: ModelView, units: IfcUnitAssignment_Length): int"
+      "Description": "Compalsory node that need execute firstly; it create empty structure of IfcDatabase and set units to all data\n\nIfcDoc.InitIfcDatabase (ifc_type: ModelView, units: IfcUnitAssignment_Length): int"
     },
     {
       "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
@@ -90,7 +90,7 @@
         {
           "Id": "2b073f1e07924624bcafb141c49f1ec5",
           "Name": "Millimetre",
-          "Description": "var",
+          "Description": "GeometryGeym.Ifc.IfcUnitAssignment.Length enum",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
@@ -134,7 +134,7 @@
         }
       ],
       "Replication": "Auto",
-      "Description": "IfcDoc.ifc_units ( ): var[]..[]"
+      "Description": "Determine internal data length units\n\nIfcDoc.ifc_units ( ): var[]..[]"
     },
     {
       "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
@@ -146,7 +146,7 @@
         {
           "Id": "1d10f9b6fa7e42409a93c7e575508725",
           "Name": "Ifc2x3Coordination",
-          "Description": "var",
+          "Description": "GeometryGeym.Ifc.ModelView enum",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
@@ -217,7 +217,7 @@
         }
       ],
       "Replication": "Auto",
-      "Description": "IfcDoc.ifc_document_specs ( ): var[]..[]"
+      "Description": "Determine ifc specifications that supported in GeometryGym library\n\nIfcDoc.ifc_document_specs ( ): var[]..[]"
     },
     {
       "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
@@ -228,7 +228,7 @@
         {
           "Id": "30a14ce124d34b15b86ccfabf3ec3a69",
           "Name": "directory_path",
-          "Description": "string",
+          "Description": "File path to directory where save file\n\nstring",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
@@ -237,7 +237,7 @@
         {
           "Id": "6de096a008eb473b867fedda6ee67429",
           "Name": "file_name",
-          "Description": "string",
+          "Description": "Name of ifc file to save without extension\n\nstring",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
@@ -255,7 +255,7 @@
         {
           "Id": "c3a9c02e213b484c9277f0faa5e775a0",
           "Name": "aux_order",
-          "Description": "int",
+          "Description": "Link with node InitIfcDatabase or other operation before it\n\nint",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
@@ -274,17 +274,17 @@
         }
       ],
       "Replication": "Auto",
-      "Description": "IfcDoc.SaveIfc (directory_path: string, file_name: string, Overwrite: bool, aux_order: int): void"
+      "Description": "Save ifc file from database-in-memory to file (ifc 2x3)\n\nIfcDoc.SaveIfc (directory_path: string, file_name: string, Overwrite: bool, aux_order: int): void"
     },
     {
       "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
       "NodeType": "CodeBlockNode",
-      "Code": "true;\n\"E:\\\\Temp\";\n\"dyn_ifc\";",
+      "Code": "true;\n\"E:\\\\Temp\";\n\"dyn_ifc1\";",
       "Id": "fb22325411ee4d5c957b8fed0db30c03",
       "Inputs": [],
       "Outputs": [
         {
-          "Id": "daebafadf50943b49de5bd51336fd058",
+          "Id": "17ca7a5ef142438190625d1f0ef8d312",
           "Name": "",
           "Description": "Значение выражения в строке 1",
           "UsingDefaultValue": false,
@@ -293,7 +293,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "0dde050b095b4c0c9a1825caa1346378",
+          "Id": "555a5e47794e48e88e42c0e2807fa1dc",
           "Name": "",
           "Description": "Значение выражения в строке 2",
           "UsingDefaultValue": false,
@@ -302,7 +302,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "7b19716206924d4b9ecc41c6b8a56569",
+          "Id": "b551484eb99746bca36c41f983b9fd15",
           "Name": "",
           "Description": "Значение выражения в строке 3",
           "UsingDefaultValue": false,
@@ -317,13 +317,13 @@
     {
       "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
       "NodeType": "FunctionNode",
-      "FunctionSignature": "dyn2ifc.IfcGeometry.as_IfcShapeRepresentation.as_IfcShapeRepresentation@double[],Autodesk.DesignScript.Geometry.Point,double",
+      "FunctionSignature": "dyn2ifc.IfcGeometry.as_IfcShapeRepresentation.as_IfcShapeRepresentation@Autodesk.DesignScript.Geometry.Point,double",
       "Id": "86ae19f3bedd4a0ab57d8c5b8fdaabed",
       "Inputs": [
         {
           "Id": "046b3d3cbfc94408b129bbd0890a545e",
-          "Name": "color",
-          "Description": "double[]",
+          "Name": "point",
+          "Description": "Autodesk.DesignScript.Geometry.Point\n\nPoint",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
@@ -331,17 +331,8 @@
         },
         {
           "Id": "2c58eaef44e5425faf0ee8aa9e29efc6",
-          "Name": "point",
-          "Description": "Point",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "1fd0dac13cf1487cacd1a778524d0ee6",
           "Name": "radius",
-          "Description": "double",
+          "Description": "double value of radius\n\ndouble",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
@@ -360,17 +351,17 @@
         }
       ],
       "Replication": "Auto",
-      "Description": "as_IfcShapeRepresentation.as_IfcShapeRepresentation (color: double[], point: Point, radius: double): as_IfcShapeRepresentation"
+      "Description": "Create IfcSphere from Autodesk.DesignScript.Geometry.Point with radius\n\nas_IfcShapeRepresentation.as_IfcShapeRepresentation (point: Point, radius: double): as_IfcShapeRepresentation"
     },
     {
       "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
       "NodeType": "CodeBlockNode",
-      "Code": "[0, 255, 0];\n1;",
+      "Code": "[0, 255, 0];\n1;\n\"green_color\";",
       "Id": "b5d204892af340b883d2f4662f2ffe09",
       "Inputs": [],
       "Outputs": [
         {
-          "Id": "b5563db9869b453f8c3d1b3ac155325b",
+          "Id": "53afd63355c445b4be8be72778ef1e73",
           "Name": "",
           "Description": "Значение выражения в строке 1",
           "UsingDefaultValue": false,
@@ -379,9 +370,18 @@
           "KeepListStructure": false
         },
         {
-          "Id": "0dda7f12747442e38fd4645e425b04d2",
+          "Id": "2421405386ef47dc91256f2bd0a538ac",
           "Name": "",
           "Description": "Значение выражения в строке 2",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "e956583c03e74e4b9cd0d1f7c7c1efe5",
+          "Name": "",
+          "Description": "Значение выражения в строке 3",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
@@ -394,12 +394,12 @@
     {
       "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
       "NodeType": "FunctionNode",
-      "FunctionSignature": "dyn2ifc.IfcObject.IfcObject@var,var[]",
+      "FunctionSignature": "dyn2ifc.IfcObject.IfcObject@var,string,string,var,string,var[]",
       "Id": "585d215104a344db8f324f21713fcd01",
       "Inputs": [
         {
           "Id": "9951c2821b084f9688cf98f1003ab359",
-          "Name": "ifcShapeRepresentation",
+          "Name": "ifc_element",
           "Description": "var",
           "UsingDefaultValue": false,
           "Level": 2,
@@ -408,6 +408,42 @@
         },
         {
           "Id": "a8c375d314e0441e8e218710c2014882",
+          "Name": "GlobalId",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "d6febf9e3e244fbd8c34fc6133f8606c",
+          "Name": "name",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "f33482528e604dd2a6adea5a8ae4afad",
+          "Name": "material",
+          "Description": "var",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "5303ea1a21294389ad91139687bc2605",
+          "Name": "description",
+          "Description": "string\nЗначение по умолчанию : \"\" (откл.)",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "610f5e746fad469dbb2826da85981383",
           "Name": "properties",
           "Description": "var[]",
           "UsingDefaultValue": false,
@@ -428,7 +464,7 @@
         }
       ],
       "Replication": "Auto",
-      "Description": "IfcObject.IfcObject (ifcShapeRepresentation: var, properties: var[]): IfcObject"
+      "Description": "IfcObject.IfcObject (ifc_element: var, GlobalId: string, name: string, material: var, description: string = \"\", properties: var[]): IfcObject"
     },
     {
       "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
@@ -463,11 +499,11 @@
     {
       "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
       "NodeType": "CodeBlockNode",
-      "Code": "a[0];\na[1];",
+      "Code": "a[0];\na[1];\n\"zero_level\";\n0;\n1;",
       "Id": "0fc13b96039e4cd19e880c36a0c09add",
       "Inputs": [
         {
-          "Id": "a873e7a6ee934b20a026fdaa35d763d6",
+          "Id": "0d9f360656404b4796ae236c4264e8b9",
           "Name": "a",
           "Description": "a",
           "UsingDefaultValue": false,
@@ -478,7 +514,7 @@
       ],
       "Outputs": [
         {
-          "Id": "5a332da97d214fe294328749a928347e",
+          "Id": "87bda092432945c695acef9d9556a74e",
           "Name": "",
           "Description": "Значение выражения в строке 1",
           "UsingDefaultValue": false,
@@ -487,9 +523,36 @@
           "KeepListStructure": false
         },
         {
-          "Id": "ea6b7c8352ae42a28fb7397ceefe1f81",
+          "Id": "cdcd21cd1763498d8748fb9f0c4294d4",
           "Name": "",
           "Description": "Значение выражения в строке 2",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "1144a77eec414f2d997dd12d04e1b8ac",
+          "Name": "",
+          "Description": "Значение выражения в строке 3",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "1f4f1d800ef941dd814bfe4fed2cbf49",
+          "Name": "",
+          "Description": "Значение выражения в строке 4",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "7e5e736323bc4929b673d42369a2a317",
+          "Name": "",
+          "Description": "Значение выражения в строке 5",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
@@ -597,13 +660,239 @@
       ],
       "Replication": "Disabled",
       "Description": "Обеспечивает возможность непосредственного авторства кода DesignScript"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "dyn2ifc.IfcGrouping.group",
+      "Id": "7a248d81ba704c5098e6ce5a38697b23",
+      "Inputs": [
+        {
+          "Id": "a88227c3c9d64998a039cef7f3fef755",
+          "Name": "ifcGrouping",
+          "Description": "dyn2ifc.IfcGrouping",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "58374c042e80436a9f1f689e85f84e51",
+          "Name": "var",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "IfcGrouping.group: var"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "dyn2ifc.IfcObject.guid",
+      "Id": "31d7b9090f8545208b3d322ee69a8a7a",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "b6a9d92a2dd24d20a32fa06531c4cdcc",
+          "Name": "string",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "IfcObject.guid: string"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "\"point\";\n\"point descr\";",
+      "Id": "56f6f1a2eb1d4a47a8613fba5f50ea46",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "3ffcf51c0bc84c659b783a05774178b2",
+          "Name": "",
+          "Description": "Значение выражения в строке 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "2200557eccee47c0ab37c6e456554423",
+          "Name": "",
+          "Description": "Значение выражения в строке 2",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Обеспечивает возможность непосредственного авторства кода DesignScript"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "dyn2ifc.IfcGrouping.IfcGrouping@string,double",
+      "Id": "1370a6093c804c1f92d6874c0728b2bc",
+      "Inputs": [
+        {
+          "Id": "e01f30755189499b880e13a4f5f915b8",
+          "Name": "name",
+          "Description": "Name of level (storey)\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "c9910a48a2884585bfa02dbe110e2d8c",
+          "Name": "elevation",
+          "Description": "Elevation of level (storey) in selected units in IFC\n\ndouble",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "0e9ca4b57b1b4d8eb48ab63342845363",
+          "Name": "IfcGrouping",
+          "Description": "IfcGrouping",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Create IfcBuildingStorey by name and elevation\n\nIfcGrouping.IfcGrouping (name: string, elevation: double): IfcGrouping"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "dyn2ifc.IfcMaterialSet.IfcMaterialSet@double[],string",
+      "Id": "4079bdbfb50f4bd4815be1f847052938",
+      "Inputs": [
+        {
+          "Id": "fe6573b71e8247c1a83f9a170dc876d8",
+          "Name": "color_data",
+          "Description": "Color info (double array with 3 values)\n\ndouble[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "5e161625375e4114bcb9fdfe83ed0ff2",
+          "Name": "material_name",
+          "Description": "Name of your material\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "3170f69c22f14a89a3824f2063ab83b1",
+          "Name": "IfcMaterialSet",
+          "Description": "IfcMaterialSet",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Create\n\nIfcMaterialSet.IfcMaterialSet (color_data: double[], material_name: string): IfcMaterialSet"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "dyn2ifc.IfcMaterialSet.material",
+      "Id": "ca8b108278bd49468b7e70fa7e70e111",
+      "Inputs": [
+        {
+          "Id": "fbf7bcc8474946e39557911c2662587f",
+          "Name": "ifcMaterialSet",
+          "Description": "dyn2ifc.IfcMaterialSet",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "53b66d25902d4706b19db652da23a6f4",
+          "Name": "var",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "IfcMaterialSet.material: var"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "dyn2ifc.IfcObject.to_IfcBuildingElementProxy@var,var",
+      "Id": "c1d015a51c4e48e189602d7aac4bb738",
+      "Inputs": [
+        {
+          "Id": "88fd71a5e09e4ad3af4f796fbbb79ec6",
+          "Name": "ifcShapeRepresentation",
+          "Description": "Use node Get_IfcFaceBasedSurfaceModel\n\nvar",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "4455f0ede6b24553984b172711d458fa",
+          "Name": "group",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "4f3f82903c2d4ff8a43ac089ed5334bd",
+          "Name": "var",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Create IfcBuildingElementProxy element from IfcGroup\n\nIfcObject.to_IfcBuildingElementProxy (ifcShapeRepresentation: var, group: var): var"
     }
   ],
   "Connectors": [
     {
       "Start": "6b6562cd25164270bccd4c0f1e74d559",
-      "End": "a873e7a6ee934b20a026fdaa35d763d6",
-      "Id": "5aa46c6490814046a8d1aea0889d3e74"
+      "End": "0d9f360656404b4796ae236c4264e8b9",
+      "Id": "42a7f5c9d502427c841c0d1f5b203cd4"
     },
     {
       "Start": "6a42ae2e1c7d42f9a2f0c97fc4aa3f12",
@@ -618,22 +907,22 @@
     {
       "Start": "1d10f9b6fa7e42409a93c7e575508725",
       "End": "6fde22b6076345cab9196af7402e10e2",
-      "Id": "5016cef1d18a4ff99ea0ded32daaf60b"
+      "Id": "eb9b452f37ff42a88803a7a0eb76919b"
     },
     {
-      "Start": "daebafadf50943b49de5bd51336fd058",
+      "Start": "17ca7a5ef142438190625d1f0ef8d312",
       "End": "615cec0e177c4a5b9e1baa76adee9936",
-      "Id": "ee9c4227be4b4ae98dba9e8434b9d18b"
+      "Id": "e9be2a58eb644b989b375fd64613b0ac"
     },
     {
-      "Start": "0dde050b095b4c0c9a1825caa1346378",
+      "Start": "555a5e47794e48e88e42c0e2807fa1dc",
       "End": "30a14ce124d34b15b86ccfabf3ec3a69",
-      "Id": "3170d1c4373b43739bf183d385d59fd6"
+      "Id": "793e5e6446674d059911729682ba691c"
     },
     {
-      "Start": "7b19716206924d4b9ecc41c6b8a56569",
+      "Start": "b551484eb99746bca36c41f983b9fd15",
       "End": "6de096a008eb473b867fedda6ee67429",
-      "Id": "03dffbf9fc604a86914acab2757ced08"
+      "Id": "c1748e7429e0470e8dfdcb55fbb7353c"
     },
     {
       "Start": "e479a871c71142b0919f2d09bb4475cf",
@@ -641,14 +930,14 @@
       "Id": "c306448d3a784355b74d90bc800d8afa"
     },
     {
-      "Start": "b5563db9869b453f8c3d1b3ac155325b",
-      "End": "046b3d3cbfc94408b129bbd0890a545e",
-      "Id": "3a90e77ecd2e448698142770fbe83cd0"
+      "Start": "53afd63355c445b4be8be72778ef1e73",
+      "End": "fe6573b71e8247c1a83f9a170dc876d8",
+      "Id": "9284931270f54944888c1809d18e3617"
     },
     {
-      "Start": "0dda7f12747442e38fd4645e425b04d2",
-      "End": "1fd0dac13cf1487cacd1a778524d0ee6",
-      "Id": "19dba74b700e4344ae38c43d92d7dcc9"
+      "Start": "e956583c03e74e4b9cd0d1f7c7c1efe5",
+      "End": "5e161625375e4114bcb9fdfe83ed0ff2",
+      "Id": "a570b2f7151e4330a90588afbf87e183"
     },
     {
       "Start": "40c7818d0d494c5da467722f41ffb673",
@@ -657,18 +946,33 @@
     },
     {
       "Start": "2e6e99651d924e80a57aa2b5edcd0a63",
-      "End": "9951c2821b084f9688cf98f1003ab359",
-      "Id": "7e1afd22d29c4197945922cea5074521"
+      "End": "88fd71a5e09e4ad3af4f796fbbb79ec6",
+      "Id": "dc3d623ceef54e309f818ea1fd599d75"
     },
     {
-      "Start": "5a332da97d214fe294328749a928347e",
-      "End": "2c58eaef44e5425faf0ee8aa9e29efc6",
-      "Id": "8bb6392a3dbd4a52a8da981e42810c8d"
+      "Start": "87bda092432945c695acef9d9556a74e",
+      "End": "046b3d3cbfc94408b129bbd0890a545e",
+      "Id": "9f80e3662d1c430eb9578ddf537ed668"
     },
     {
-      "Start": "ea6b7c8352ae42a28fb7397ceefe1f81",
+      "Start": "cdcd21cd1763498d8748fb9f0c4294d4",
       "End": "0cd15997484e411fb447754673a245a7",
-      "Id": "13e9d52136f2474ab5556f6f823addd5"
+      "Id": "27aa272da6ee43e48a469b8ccfdf5f21"
+    },
+    {
+      "Start": "1144a77eec414f2d997dd12d04e1b8ac",
+      "End": "e01f30755189499b880e13a4f5f915b8",
+      "Id": "e3814307836a4ef89b36aae1def4cac2"
+    },
+    {
+      "Start": "1f4f1d800ef941dd814bfe4fed2cbf49",
+      "End": "c9910a48a2884585bfa02dbe110e2d8c",
+      "Id": "2e1818a6a4a84dec9e0f672ac4804bde"
+    },
+    {
+      "Start": "7e5e736323bc4929b673d42369a2a317",
+      "End": "2c58eaef44e5425faf0ee8aa9e29efc6",
+      "Id": "7280886894e64263a44fe738d303c111"
     },
     {
       "Start": "cfd469ec11ae4a8a88c307b87d099a15",
@@ -677,13 +981,53 @@
     },
     {
       "Start": "b3277bbd48f847cabcf36736fc4a4bb0",
-      "End": "a8c375d314e0441e8e218710c2014882",
-      "Id": "57170e48fe644f26ba65efceda856512"
+      "End": "610f5e746fad469dbb2826da85981383",
+      "Id": "abe42c0ead474ce9a2f3c0be7db99d4b"
     },
     {
       "Start": "e71fe5107c4f44bda1844cb69be4f376",
       "End": "c3a9c02e213b484c9277f0faa5e775a0",
-      "Id": "8712fc3106f0421197415b6e2d621f42"
+      "Id": "b5d4d478f470472687e5ed10547c5349"
+    },
+    {
+      "Start": "58374c042e80436a9f1f689e85f84e51",
+      "End": "4455f0ede6b24553984b172711d458fa",
+      "Id": "aa571775ffea416397a68038ec893286"
+    },
+    {
+      "Start": "b6a9d92a2dd24d20a32fa06531c4cdcc",
+      "End": "a8c375d314e0441e8e218710c2014882",
+      "Id": "91cffee7eaf44818baf85100704d2125"
+    },
+    {
+      "Start": "3ffcf51c0bc84c659b783a05774178b2",
+      "End": "d6febf9e3e244fbd8c34fc6133f8606c",
+      "Id": "ef6d2696845a4e9f86d929b905ea761f"
+    },
+    {
+      "Start": "2200557eccee47c0ab37c6e456554423",
+      "End": "5303ea1a21294389ad91139687bc2605",
+      "Id": "9fa7b2f020e3463f9c19027193840e91"
+    },
+    {
+      "Start": "0e9ca4b57b1b4d8eb48ab63342845363",
+      "End": "a88227c3c9d64998a039cef7f3fef755",
+      "Id": "9dddf15a317c48f7a8dd13841323093a"
+    },
+    {
+      "Start": "3170f69c22f14a89a3824f2063ab83b1",
+      "End": "fbf7bcc8474946e39557911c2662587f",
+      "Id": "1f9e8d08491d409cb10c6e7683c1fc70"
+    },
+    {
+      "Start": "53b66d25902d4706b19db652da23a6f4",
+      "End": "f33482528e604dd2a6adea5a8ae4afad",
+      "Id": "1ebd998158c3463d9dbfc06ae40e05af"
+    },
+    {
+      "Start": "4f3f82903c2d4ff8a43ac089ed5334bd",
+      "End": "9951c2821b084f9688cf98f1003ab359",
+      "Id": "bfa167baaf0e4e0f873da0183541898c"
     }
   ],
   "Dependencies": [],
@@ -729,149 +1073,360 @@
     },
     "NodeViews": [
       {
+        "ShowGeometry": true,
+        "Name": "points",
         "Id": "41f0621fb8ee434f8610d041dff5d2dd",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
-        "Name": "points",
-        "ShowGeometry": true,
         "Excluded": false,
-        "X": 707.66873814724022,
-        "Y": 260.64761864024047
+        "X": 312.53540494522406,
+        "Y": 392.70246145448073
       },
       {
+        "ShowGeometry": true,
+        "Name": "IfcDoc.InitIfcDatabase",
         "Id": "d5ee5159b0ad4219a7182818dedd59b7",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
-        "Name": "IfcDoc.InitIfcDatabase",
-        "ShowGeometry": true,
         "Excluded": false,
-        "X": 429.68386467285836,
-        "Y": 175.26598112998607
+        "X": -163.84319233032454,
+        "Y": 435.75908879629878
       },
       {
+        "ShowGeometry": true,
+        "Name": "IfcDoc.ifc_units",
         "Id": "85e4e112e5b64c38a33196287b865606",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
-        "Name": "IfcDoc.ifc_units",
-        "ShowGeometry": true,
         "Excluded": false,
-        "X": 181.21374187817776,
-        "Y": 253.51108083390363
+        "X": -431.52672868977277,
+        "Y": 490.94809222249529
       },
       {
+        "ShowGeometry": true,
+        "Name": "IfcDoc.ifc_document_specs",
         "Id": "6d93d1d4d443497b83fd4c07ef00eb66",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
-        "Name": "IfcDoc.ifc_document_specs",
-        "ShowGeometry": true,
         "Excluded": false,
-        "X": 134.76947002819952,
-        "Y": -47.336889059985211
+        "X": -458.75758697498338,
+        "Y": 213.15621860632751
       },
       {
+        "ShowGeometry": true,
+        "Name": "IfcDoc.SaveIfc",
         "Id": "cadf2c6674d94d068266346b442074d6",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
-        "Name": "IfcDoc.SaveIfc",
-        "ShowGeometry": true,
         "Excluded": false,
-        "X": 3609.8246419949173,
-        "Y": 271.72359424509989
+        "X": 4052.1654175728231,
+        "Y": 455.05969031144377
       },
       {
+        "ShowGeometry": true,
+        "Name": "Code Block",
         "Id": "fb22325411ee4d5c957b8fed0db30c03",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
-        "Name": "Code Block",
-        "ShowGeometry": true,
         "Excluded": false,
-        "X": 3212.0277610403818,
-        "Y": 273.026676411715
+        "X": 3654.3685366182876,
+        "Y": 456.3627724780589
       },
       {
+        "ShowGeometry": true,
+        "Name": "as_IfcShapeRepresentation.as_IfcShapeRepresentation",
         "Id": "86ae19f3bedd4a0ab57d8c5b8fdaabed",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
-        "Name": "as_IfcShapeRepresentation.as_IfcShapeRepresentation",
-        "ShowGeometry": true,
         "Excluded": false,
-        "X": 1335.9643885810513,
-        "Y": 229.43185912510677
+        "X": 1341.1225452197482,
+        "Y": 232.08044291062612
       },
       {
+        "ShowGeometry": true,
+        "Name": "color",
         "Id": "b5d204892af340b883d2f4662f2ffe09",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
-        "Name": "color",
-        "ShowGeometry": true,
         "Excluded": false,
-        "X": 403.45264729814573,
-        "Y": 412.00096361828042
+        "X": 729.31348512986369,
+        "Y": 667.9490235196015
       },
       {
+        "ShowGeometry": true,
+        "Name": "IfcObject.IfcObject",
         "Id": "585d215104a344db8f324f21713fcd01",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
-        "Name": "IfcObject.IfcObject",
-        "ShowGeometry": true,
         "Excluded": false,
-        "X": 2258.6864060751614,
-        "Y": 349.66815293139877
+        "X": 3062.8887161575763,
+        "Y": 485.8219500618174
       },
       {
+        "ShowGeometry": true,
+        "Name": "as_IfcShapeRepresentation.Get_IfcFaceBasedSurfaceModel",
         "Id": "7014b4a3defc43d8a5907bb46215d072",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
-        "Name": "as_IfcShapeRepresentation.Get_IfcFaceBasedSurfaceModel",
-        "ShowGeometry": true,
         "Excluded": false,
-        "X": 1795.0654995709931,
-        "Y": 229.75288228472158
+        "X": 1800.22365620969,
+        "Y": 232.40146607024093
       },
       {
+        "ShowGeometry": true,
+        "Name": "Code Block",
         "Id": "0fc13b96039e4cd19e880c36a0c09add",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
-        "Name": "Code Block",
-        "ShowGeometry": true,
         "Excluded": false,
-        "X": 909.66280671810125,
-        "Y": 267.82375885535265
+        "X": 624.16086612272261,
+        "Y": 350.09305181407655
       },
       {
+        "ShowGeometry": true,
+        "Name": "IfcProperties.IfcProperties",
         "Id": "f5f0cd8cf0ab4443bf3d77ce5a366847",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
-        "Name": "IfcProperties.IfcProperties",
-        "ShowGeometry": true,
         "Excluded": false,
-        "X": 1402.0003456154686,
-        "Y": 532.3074024075172
+        "X": 1399.9369268913829,
+        "Y": 486.91219047763
       },
       {
+        "ShowGeometry": true,
+        "Name": "IfcProperties.properties",
         "Id": "b604b2f8f18d44ebaea35edb44bfafed",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
-        "Name": "IfcProperties.properties",
-        "ShowGeometry": true,
         "Excluded": false,
-        "X": 1758.1881470404123,
-        "Y": 541.1977652311474
+        "X": 1756.1247283163266,
+        "Y": 495.80255330126022
       },
       {
+        "ShowGeometry": true,
+        "Name": "Code Block",
         "Id": "8ac7fbb0c6094d6ba6994b2ebca6d212",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
-        "Name": "Code Block",
-        "ShowGeometry": true,
         "Excluded": false,
-        "X": 2913.0,
-        "Y": 461.0
+        "X": 3439.6444493633671,
+        "Y": 510.54465181037637
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "IfcGrouping.group",
+        "Id": "7a248d81ba704c5098e6ce5a38697b23",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1868.5003191532089,
+        "Y": -48.084780541128623
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "IfcObject.guid",
+        "Id": "31d7b9090f8545208b3d322ee69a8a7a",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 2824.609314599149,
+        "Y": 451.93369018898693
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Obkects_IFC_names",
+        "Id": "56f6f1a2eb1d4a47a8613fba5f50ea46",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 2743.7929164389484,
+        "Y": 551.84329052289615
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "IfcGrouping.IfcGrouping",
+        "Id": "1370a6093c804c1f92d6874c0728b2bc",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1563.881034475967,
+        "Y": -44.39043839995395
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "IfcMaterialSet.IfcMaterialSet",
+        "Id": "4079bdbfb50f4bd4815be1f847052938",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1371.9055948617413,
+        "Y": 687.92502718601486
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "IfcMaterialSet.material",
+        "Id": "ca8b108278bd49468b7e70fa7e70e111",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1760.3255031677986,
+        "Y": 684.36875676147372
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "IfcObject.to_IfcBuildingElementProxy",
+        "Id": "c1d015a51c4e48e189602d7aac4bb738",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 2348.8207253915552,
+        "Y": 231.80954431285818
       }
     ],
-    "Annotations": [],
-    "X": -407.7710577891603,
-    "Y": -100.93738613697707,
-    "Zoom": 1.2281678341951161
+    "Annotations": [
+      {
+        "Id": "9b5710ff7772488dba91434ca4323229",
+        "Title": "Ifc file initialization",
+        "Nodes": [
+          "d5ee5159b0ad4219a7182818dedd59b7",
+          "85e4e112e5b64c38a33196287b865606",
+          "6d93d1d4d443497b83fd4c07ef00eb66"
+        ],
+        "Left": -468.75758697498338,
+        "Top": 160.15621860632751,
+        "Width": 495.91439464465884,
+        "Height": 527.79187361616778,
+        "FontSize": 36.0,
+        "InitialTop": 213.15621860632751,
+        "InitialHeight": 422.79187361616778,
+        "TextblockHeight": 43.0,
+        "Background": "#FFC1D676"
+      },
+      {
+        "Id": "3685865fd11d48e48f0e281bacb16f46",
+        "Title": "simple generator points",
+        "Nodes": [
+          "41f0621fb8ee434f8610d041dff5d2dd"
+        ],
+        "Left": 302.53540494522406,
+        "Top": 252.70246145448073,
+        "Width": 165.87,
+        "Height": 244.0,
+        "FontSize": 36.0,
+        "InitialTop": 392.70246145448073,
+        "InitialHeight": 145.0,
+        "TextblockHeight": 130.0,
+        "Background": "#FFFFB8D8"
+      },
+      {
+        "Id": "ea5d4a5f22854f819545677ab0f5e6f7",
+        "Title": "Creation a IfcGroup -- for grouping data in Level (IfcBuildingStorey) recommended",
+        "Nodes": [
+          "7a248d81ba704c5098e6ce5a38697b23",
+          "1370a6093c804c1f92d6874c0728b2bc"
+        ],
+        "Left": 1553.881034475967,
+        "Top": -188.08478054112862,
+        "Width": 533.61928467724169,
+        "Height": 262.69434214117467,
+        "FontSize": 36.0,
+        "InitialTop": -48.084780541128623,
+        "InitialHeight": 148.69434214117467,
+        "TextblockHeight": 130.0,
+        "Background": "#FFE8F7AD"
+      },
+      {
+        "Id": "ec9d18fce43b4c64a1988347e3ee81f3",
+        "Title": "Convert geometry representation",
+        "Nodes": [
+          "86ae19f3bedd4a0ab57d8c5b8fdaabed",
+          "7014b4a3defc43d8a5907bb46215d072",
+          "c1d015a51c4e48e189602d7aac4bb738"
+        ],
+        "Left": 1331.1225452197482,
+        "Top": 178.80954431285818,
+        "Width": 1309.6981801718071,
+        "Height": 172.27089859776794,
+        "FontSize": 36.0,
+        "InitialTop": 231.80954431285818,
+        "InitialHeight": 145.59192175738275,
+        "TextblockHeight": 43.0,
+        "Background": "#FFFF7BAC"
+      },
+      {
+        "Id": "f77b37ef75784154806581a4124222da",
+        "Title": "Create properties (optional)",
+        "Nodes": [
+          "f5f0cd8cf0ab4443bf3d77ce5a366847",
+          "b604b2f8f18d44ebaea35edb44bfafed"
+        ],
+        "Left": 1389.9369268913829,
+        "Top": 433.91219047763,
+        "Width": 600.1878014249437,
+        "Height": 154.8903628236302,
+        "FontSize": 36.0,
+        "InitialTop": 486.91219047763,
+        "InitialHeight": 153.8903628236302,
+        "TextblockHeight": 43.0,
+        "Background": "#FFE8F7AD"
+      },
+      {
+        "Id": "424591888d294be4b54579f777cdd63a",
+        "Title": "Create IfcBuildingElementProxy by elements",
+        "Nodes": [
+          "585d215104a344db8f324f21713fcd01",
+          "8ac7fbb0c6094d6ba6994b2ebca6d212",
+          "31d7b9090f8545208b3d322ee69a8a7a",
+          "56f6f1a2eb1d4a47a8613fba5f50ea46"
+        ],
+        "Left": 2733.7929164389484,
+        "Top": 398.93369018898693,
+        "Width": 834.85153292441873,
+        "Height": 309.88825987283053,
+        "FontSize": 36.0,
+        "InitialTop": 451.93369018898693,
+        "InitialHeight": 244.90960033390922,
+        "TextblockHeight": 43.0,
+        "Background": "#FFC1D676"
+      },
+      {
+        "Id": "9626b707fde44c6d92cd5a06c42e0df3",
+        "Title": "Save IFC",
+        "Nodes": [
+          "cadf2c6674d94d068266346b442074d6",
+          "fb22325411ee4d5c957b8fed0db30c03"
+        ],
+        "Left": 3644.3685366182876,
+        "Top": 402.05969031144377,
+        "Width": 650.79688095453594,
+        "Height": 224.0,
+        "FontSize": 36.0,
+        "InitialTop": 455.05969031144377,
+        "InitialHeight": 146.30308216661513,
+        "TextblockHeight": 43.0,
+        "Background": "#FFC1D676"
+      },
+      {
+        "Id": "ea2acc23bb2749a3a99781704d71e92b",
+        "Title": "Color (ifcMaterial)",
+        "Nodes": [
+          "b5d204892af340b883d2f4662f2ffe09",
+          "4079bdbfb50f4bd4815be1f847052938",
+          "ca8b108278bd49468b7e70fa7e70e111"
+        ],
+        "Left": 719.31348512986369,
+        "Top": 614.9490235196015,
+        "Width": 1272.0120180379349,
+        "Height": 191.97600366641336,
+        "FontSize": 36.0,
+        "InitialTop": 667.9490235196015,
+        "InitialHeight": 164.97600366641336,
+        "TextblockHeight": 43.0,
+        "Background": "#FFC1D676"
+      }
+    ],
+    "X": -372.92814049591288,
+    "Y": 179.8078342431547,
+    "Zoom": 0.33507624479007281
   }
 }
