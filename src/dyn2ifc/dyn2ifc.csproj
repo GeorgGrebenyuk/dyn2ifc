@@ -61,6 +61,8 @@
     <Compile Include="About.cs" />
     <Compile Include="IfcFile\IfcDoc.cs" />
     <Compile Include="IfcGeometry\as_IfcShapeRepresentation.cs" />
+    <Compile Include="IfcGrouping.cs" />
+    <Compile Include="IfcMaterialSet.cs" />
     <Compile Include="IfcObject.cs" />
     <Compile Include="IfcProperties.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
