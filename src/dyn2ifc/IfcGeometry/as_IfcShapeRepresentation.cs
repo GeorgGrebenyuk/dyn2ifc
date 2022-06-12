@@ -16,108 +16,77 @@ namespace dyn2ifc.IfcGeometry
     public class as_IfcShapeRepresentation
     {
         private GeometryGym.Ifc.IfcShapeRepresentation ifc_IfcShapeRepresentation;
-        //private GeometryGym.Ifc.IfcRepresentationItem ifc_to_set_style;
-        private double[] color_data = new double[3] { 0, 0, 0 };
-
-        [Obsolete]
-        private void SetColor(IfcRepresentationItem ifc_to_set_style)
-        {
-            //problem ... how set a color???
-            IfcColourRgb ifc_color = new IfcColourRgb(ifc_db, color_data[0] / 256d, color_data[1] / 256d, color_data[2] / 256d);
-            IfcSurfaceStyleRendering ifc_style1 = new IfcSurfaceStyleRendering(ifc_color);
-            //IfcSurfaceStyleShading ifc_style = new IfcSurfaceStyleShading(ifc_color);
-            IfcSurfaceStyle ifc_style0 = new IfcSurfaceStyle(ifc_style1);
-            ifc_style0.Name = $"some_material_rgb_{color_data[0]}-{color_data[1]}-{color_data[2]}";
-
-            IfcPresentationStyleAssignment style_assignm = new IfcPresentationStyleAssignment(ifc_style0);
-            IfcStyledItem object_style = new IfcStyledItem(ifc_to_set_style, style_assignm);
-
-        }
         [dr.IsVisibleInDynamoLibrary(true)]
         public IfcShapeRepresentation Get_IfcFaceBasedSurfaceModel()
         {
             return this.ifc_IfcShapeRepresentation;
         }
         /// <summary>
-        /// Create IfcCartesianPoint from Autodesk.DesignScript.Geometry.Point with color
+        /// Create IfcCartesianPoint from Autodesk.DesignScript.Geometry.Point
         /// </summary>
-        /// <param name="color">Color info (double array with 3 values)</param>
         /// <param name="point">Autodesk.DesignScript.Geometry.Point</param>
         [dr.IsVisibleInDynamoLibrary(true)]
         [Obsolete]
-        public as_IfcShapeRepresentation (double [] color, dg.Point point)
+        public as_IfcShapeRepresentation (dg.Point point)
         {
-            this.color_data = color;
             IfcCartesianPoint pnt = new IfcCartesianPoint(ifc_db, point.X, point.Y, point.Z);
-            this.SetColor(pnt);
             this.ifc_IfcShapeRepresentation = new IfcShapeRepresentation(pnt);
         }
         /// <summary>
-        /// Create IfcSphere from Autodesk.DesignScript.Geometry.Point with color and radius
+        /// Create IfcSphere from Autodesk.DesignScript.Geometry.Point with radius
         /// </summary>
-        /// <param name="color">Color info (double array with 3 values)</param>
         /// <param name="point">Autodesk.DesignScript.Geometry.Point</param>
         /// <param name="radius">double value of radius</param>
         [dr.IsVisibleInDynamoLibrary(true)]
-        public as_IfcShapeRepresentation (double[] color, dg.Point point, double radius)
+        public as_IfcShapeRepresentation (dg.Point point, double radius)
         {
-            this.color_data = color;
             IfcCartesianPoint pnt = new IfcCartesianPoint(ifc_db, point.X, point.Y, point.Z);
             IfcAxis2Placement3D placement = new IfcAxis2Placement3D(pnt);
             IfcSphere sphere = new IfcSphere(placement, radius);
-            this.SetColor(pnt);
             this.ifc_IfcShapeRepresentation = new IfcShapeRepresentation(sphere);
         }
         /// <summary>
-        /// Create IfcBoundingBox from Autodesk.DesignScript.Geometry.BoundingBox with color
+        /// Create IfcBoundingBox from Autodesk.DesignScript.Geometry.BoundingBox
         /// </summary>
-        /// <param name="color">Color info (double array with 3 values)</param>
         /// <param name="bbox">Autodesk.DesignScript.Geometry.BoundingBox</param>
         [dr.IsVisibleInDynamoLibrary(true)]
-        public as_IfcShapeRepresentation(double[] color, dg.BoundingBox bbox)
+        public as_IfcShapeRepresentation(dg.BoundingBox bbox)
         {
-            this.color_data = color;
             IfcCartesianPoint min_point = new IfcCartesianPoint(ifc_db, bbox.MinPoint.X, bbox.MinPoint.Y, bbox.MinPoint.Z);
             IfcBoundingBox ifc_bbox = new IfcBoundingBox(min_point,
                 Math.Abs(bbox.MaxPoint.X - bbox.MinPoint.X),
                 Math.Abs(bbox.MaxPoint.Y - bbox.MinPoint.Y),
                 Math.Abs(bbox.MaxPoint.Z - bbox.MinPoint.Z));
-            this.SetColor(ifc_bbox);
             this.ifc_IfcShapeRepresentation = new IfcShapeRepresentation(ifc_bbox);
         }
         /// <summary>
-        /// Create IfcPolyline from Autodesk.DesignScript.Geometry.PolyCurve with color
+        /// Create IfcPolyline from Autodesk.DesignScript.Geometry.PolyCurve
         /// </summary>
-        /// <param name="color">Color info (double array with 3 values)</param>
         /// <param name="poly_curve">Autodesk.DesignScript.Geometry.PolyCurve</param>
         [dr.IsVisibleInDynamoLibrary(true)]
-        public as_IfcShapeRepresentation(double[] color, dg.PolyCurve poly_curve)
+        public as_IfcShapeRepresentation(dg.PolyCurve poly_curve)
         {
-            this.color_data = color;
             List<IfcCartesianPoint> points = new List<IfcCartesianPoint>();
 
             points.Add(new IfcCartesianPoint(ifc_db, 
                 poly_curve.Curves()[0].StartPoint.X, 
                 poly_curve.Curves()[0].StartPoint.Y,
                 poly_curve.Curves()[0].StartPoint.Z));
-            for (int counter1 = 0; counter1<points.Count(); counter1++)
+            for (int counter1 = 0; counter1< poly_curve.Curves().Count(); counter1++)
             {
                 dg.Curve curve = poly_curve.Curves()[counter1];
                 points.Add(new IfcCartesianPoint(ifc_db, curve.EndPoint.X, curve.EndPoint.Y, curve.EndPoint.Z));
             }
             IfcPolyline ifc_pline = new IfcPolyline(points);
-            this.SetColor(ifc_pline);
             this.ifc_IfcShapeRepresentation = new IfcShapeRepresentation(ifc_pline);
         }
         /// <summary>
-        /// Create IfcFaceBasedSurfaceModel from Autodesk.DesignScript.Geometry.Mesh with color
+        /// Create IfcFaceBasedSurfaceModel from Autodesk.DesignScript.Geometry.Mesh
         /// </summary>
-        /// <param name="color">Color info (double array with 3 values)</param>
         /// <param name="mesh">Autodesk.DesignScript.Geometry.Mesh</param>
         [dr.IsVisibleInDynamoLibrary(true)]
-        public as_IfcShapeRepresentation (double[] color, dg.Mesh mesh)
+        public as_IfcShapeRepresentation (dg.Mesh mesh)
         {
-            this.color_data = color;
             List<IfcCartesianPoint> ifc_points = new List<IfcCartesianPoint>();
             foreach (dg.Point dyn_point in mesh.VertexPositions)
             {
@@ -140,28 +109,70 @@ namespace dyn2ifc.IfcGeometry
                 faces.Add(new IfcFace(new IfcFaceOuterBound(loop, true)));
             }
             IfcFaceBasedSurfaceModel faced_model = new IfcFaceBasedSurfaceModel(new IfcConnectedFaceSet(faces));
-            this.SetColor(faced_model);
             this.ifc_IfcShapeRepresentation = new IfcShapeRepresentation(faced_model);
         }
-        [dr.IsVisibleInDynamoLibrary(false)]
-        public as_IfcShapeRepresentation (double[] color, dg.Solid solid)
+        /// <summary>
+        /// Create IfcFaceBasedSurfaceModel from Autodesk.DesignScript.Geometry.Solid. Need debug!!!!
+        /// </summary>
+        /// <param name="solid">Autodesk.DesignScript.Geometry.Solid</param>
+        [dr.IsVisibleInDynamoLibrary(true)]
+        public as_IfcShapeRepresentation (dg.Solid solid)
         {
-            this.color_data = color;
             List<IfcFace> faces = new List<IfcFace>();
             foreach (dg.Face dyn_face in solid.Faces)
             {
+                
                 foreach (dg.Loop dyn_loop in dyn_face.Loops)
                 {
+                    IfcFaceOuterBound bound;
+                    IfcPolyLoop loop;
                     if (dyn_loop.IsExternal)
                     {
-                        List<IfcCartesianPoint> points = new List<IfcCartesianPoint>();
+                        List<dg.Point> dyn_points = new List<dg.Point>();
                         foreach (dg.CoEdge coedge in dyn_loop.CoEdges)
                         {
                             //дичь какая-то ...
+                            if (!dyn_points.Contains(coedge.StartVertex.PointGeometry)) dyn_points.Add(coedge.StartVertex.PointGeometry);
+                            if (!dyn_points.Contains(coedge.EndVertex.PointGeometry)) dyn_points.Add(coedge.EndVertex.PointGeometry);
                         }
+                        List<IfcCartesianPoint> points = dyn_points.Select(a => new IfcCartesianPoint(ifc_db, a.X, a.Y, a.Z)).ToList();
+                        loop = new IfcPolyLoop(points);
+                        bound = new IfcFaceOuterBound(loop, true);
+                        faces.Add(new IfcFace(bound));
                     }
                 }
             }
+            IfcFaceBasedSurfaceModel faced_model = new IfcFaceBasedSurfaceModel(new IfcConnectedFaceSet(faces));
+            this.ifc_IfcShapeRepresentation = new IfcShapeRepresentation(faced_model);
         }
+
+        /// <summary>
+        /// Create IfcExtrudedAreaSolid by Autodesk.DesignScript.Geometry.PolyCurve
+        /// </summary>
+        /// <param name="dyn_polyline">Autodesk.DesignScript.Geometry.PolyCurve</param>
+        /// <param name="depth">double value of depth</param>
+        [dr.IsVisibleInDynamoLibrary(true)]
+        public as_IfcShapeRepresentation(dg.PolyCurve polyCurve, double depth)
+        {
+            List<Tuple<double, double, double>> points = new List<Tuple<double, double, double>>();
+            List<IfcLineIndex> indexes = new List<IfcLineIndex>();
+
+            int points_counter = 1;
+            foreach (dg.Curve line in polyCurve.Curves())
+            {
+                Tuple<double, double, double> start_point = new Tuple<double, double, double>(line.StartPoint.X, line.StartPoint.Y, line.StartPoint.Z);
+                Tuple<double, double, double> end_point = new Tuple<double, double, double>(line.EndPoint.X, line.EndPoint.Y, line.EndPoint.Z);
+                //Реализовать потом экономичную процедуру
+                points.Add(start_point);
+                points.Add(end_point);
+                indexes.Add(new IfcLineIndex(points_counter, points_counter + 1));
+                points_counter += 2;
+            }
+            IfcIndexedPolyCurve polycurve = new IfcIndexedPolyCurve(new IfcCartesianPointList3D(ifc_db, points), indexes);
+            IfcArbitraryClosedProfileDef arb_closed = new IfcArbitraryClosedProfileDef("area", polycurve);
+            IfcExtrudedAreaSolid solid = new IfcExtrudedAreaSolid(arb_closed, depth);
+            this.ifc_IfcShapeRepresentation = new IfcShapeRepresentation(solid);
+        }
+        
     }
 }
