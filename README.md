@@ -40,3 +40,7 @@ Combine properties, geometry representation, other data (name, guid) to IfcClass
 
 ## Class IfcProperties
 Convert List of List<string> (2 items) to list<IfcPropertySingleValue> -- ifc properties to object, only in string representation.
+
+  
+# Bugfixing
+Because of it's debug-version of package and process of converting Dynamo's data to IFC is no-trivial task, there will be an errors in data processing. Pleae, write in [Issues](https://github.com/GeorgGrebenyuk/dyn2ifc/issues) about all problems in data conversion. 
