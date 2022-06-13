@@ -14,7 +14,7 @@ There are four ways to using:
 
 # What it include?
 ## Class IfcFile.IfcDoc
-Main nides that determine ```DatabaseIfc``` stricture (Ifc specification, Length units, save path);
+Main nodes that determine ```DatabaseIfc``` structure (Ifc specification, Length units, save path);
 
 ## Class IfcGeometry
 Convert Autodesk.DesignScript.Geometry data to IfcShapeRepresentation geometry class.
