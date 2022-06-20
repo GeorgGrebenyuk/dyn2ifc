@@ -75,4 +75,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>copy /y "$(TargetDir)dyn2ifc.dll" "C:\Users\Georg\AppData\Roaming\Autodesk\C3D 2022\Dynamo\2.12\packages\dyn2ifc\bin\dyn2ifc.dll"
+copy /y "$(TargetDir)dyn2ifc.xml" "C:\Users\Georg\AppData\Roaming\Autodesk\C3D 2022\Dynamo\2.12\packages\dyn2ifc\bin\dyn2ifc.xml"
+copy /y "$(TargetDir)GeometryGymIFC.dll" "C:\Users\Georg\AppData\Roaming\Autodesk\C3D 2022\Dynamo\2.12\packages\dyn2ifc\bin\GeometryGymIFC.dll"
+copy /y "$(TargetDir)Newtonsoft.Json.dll" "C:\Users\Georg\AppData\Roaming\Autodesk\C3D 2022\Dynamo\2.12\packages\dyn2ifc\bin\Newtonsoft.Json.dll"</PostBuildEvent>
+  </PropertyGroup>
 </Project>
