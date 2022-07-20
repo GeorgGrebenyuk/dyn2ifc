@@ -8,15 +8,16 @@ using dg = Autodesk.DesignScript.Geometry;
 using dr = Autodesk.DesignScript.Runtime;
 
 using GeometryGym.Ifc;
-using static dyn2ifc.IfcFile.IfcDoc;
 
 namespace dyn2ifc
 {
-    [dr.IsVisibleInDynamoLibrary(true)]
+    /// <summary>
+    /// Class for Grouping IFC elements
+    /// </summary>
     public class IfcGrouping
     {
-        private IfcObjectDefinition group;
-        private IfcBuildingStorey storey;
+        public IfcObjectDefinition group;
+        //public IfcBuildingStorey storey;
         /// <summary>
         /// Getting IfcGroup from IfcGrouping class
         /// </summary>
@@ -27,9 +28,9 @@ namespace dyn2ifc
             return this.group;
         }
         [dr.IsVisibleInDynamoLibrary(true)]
-        public IfcGrouping(string name)
+        public IfcGrouping(dyn2ifc.IfcDoc ifc_document, string name)
         {
-            group = new IfcGroup(ifc_db, name);
+            group = new IfcGroup(ifc_document.ifc_db, name);
         }
         /// <summary>
         /// Create IfcBuildingStorey by name and elevation
@@ -37,9 +38,9 @@ namespace dyn2ifc
         /// <param name="name">Name of level (storey)</param>
         /// <param name="elevation">Elevation of level (storey) in selected units in IFC</param>
         [dr.IsVisibleInDynamoLibrary(false)]
-        public IfcGrouping(string name, double elevation)
+        public IfcGrouping(dyn2ifc.IfcDoc ifc_document, string name, double elevation)
         {
-            group = new IfcBuildingStorey(ifc_site, name, elevation);
+            group = new IfcBuildingStorey(ifc_document.ifc_site, name, elevation);
         }
         /// <summary>
         /// Add created IfcElements to group
