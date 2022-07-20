@@ -23,6 +23,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>bin\Debug\dyn2ifc.xml</DocumentationFile>
+    <PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -59,7 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="About.cs" />
-    <Compile Include="IfcFile\IfcDoc.cs" />
+    <Compile Include="IfcDoc.cs" />
     <Compile Include="IfcGeometry\as_IfcShapeRepresentation.cs" />
     <Compile Include="IfcGrouping.cs" />
     <Compile Include="IfcMaterialSet.cs" />
