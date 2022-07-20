@@ -43,11 +43,11 @@ namespace dyn2ifc
         /// <returns></returns>
         [dr.IsVisibleInDynamoLibrary(true)]
         public static IfcElement to_IfcBuildingElementProxy(dyn2ifc.IfcDoc ifc_document, 
-            IfcShapeRepresentation ifcShapeRepresentation, IfcObjectDefinition group = null)
+            IfcShapeRepresentation ifcShapeRepresentation, dyn2ifc.IfcGrouping group = null)
         {
            if (group == null) return new IfcBuildingElementProxy(ifc_document.ifc_site,
                ifc_document.ifc_site.ObjectPlacement, new IfcProductDefinitionShape(ifcShapeRepresentation));
-           else return new IfcBuildingElementProxy(group, ifc_document.ifc_site.ObjectPlacement, 
+           else return new IfcBuildingElementProxy(group.group, ifc_document.ifc_site.ObjectPlacement, 
                new IfcProductDefinitionShape(ifcShapeRepresentation));
         }
         /// <summary>
