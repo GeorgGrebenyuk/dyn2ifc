@@ -8,7 +8,6 @@ using dg = Autodesk.DesignScript.Geometry;
 using dr = Autodesk.DesignScript.Runtime;
 
 using GeometryGym.Ifc;
-using static dyn2ifc.IfcFile.IfcDoc;
 
 namespace dyn2ifc.IfcGeometry
 {
@@ -27,9 +26,9 @@ namespace dyn2ifc.IfcGeometry
         /// <param name="point">Autodesk.DesignScript.Geometry.Point</param>
         [dr.IsVisibleInDynamoLibrary(true)]
         [Obsolete]
-        public as_IfcShapeRepresentation (dg.Point point)
+        public as_IfcShapeRepresentation (dyn2ifc.IfcDoc ifc_document, dg.Point point)
         {
-            IfcCartesianPoint pnt = new IfcCartesianPoint(ifc_db, point.X, point.Y, point.Z);
+            IfcCartesianPoint pnt = new IfcCartesianPoint(ifc_document.ifc_db, point.X, point.Y, point.Z);
             this.ifc_IfcShapeRepresentation = new IfcShapeRepresentation(pnt);
         }
         /// <summary>
@@ -38,9 +37,9 @@ namespace dyn2ifc.IfcGeometry
         /// <param name="point">Autodesk.DesignScript.Geometry.Point</param>
         /// <param name="radius">double value of radius</param>
         [dr.IsVisibleInDynamoLibrary(true)]
-        public as_IfcShapeRepresentation (dg.Point point, double radius)
+        public as_IfcShapeRepresentation (dyn2ifc.IfcDoc ifc_document, dg.Point point, double radius)
         {
-            IfcCartesianPoint pnt = new IfcCartesianPoint(ifc_db, point.X, point.Y, point.Z);
+            IfcCartesianPoint pnt = new IfcCartesianPoint(ifc_document.ifc_db, point.X, point.Y, point.Z);
             IfcAxis2Placement3D placement = new IfcAxis2Placement3D(pnt);
             IfcSphere sphere = new IfcSphere(placement, radius);
             this.ifc_IfcShapeRepresentation = new IfcShapeRepresentation(sphere);
@@ -50,9 +49,9 @@ namespace dyn2ifc.IfcGeometry
         /// </summary>
         /// <param name="bbox">Autodesk.DesignScript.Geometry.BoundingBox</param>
         [dr.IsVisibleInDynamoLibrary(true)]
-        public as_IfcShapeRepresentation(dg.BoundingBox bbox)
+        public as_IfcShapeRepresentation(dyn2ifc.IfcDoc ifc_document, dg.BoundingBox bbox)
         {
-            IfcCartesianPoint min_point = new IfcCartesianPoint(ifc_db, bbox.MinPoint.X, bbox.MinPoint.Y, bbox.MinPoint.Z);
+            IfcCartesianPoint min_point = new IfcCartesianPoint(ifc_document.ifc_db, bbox.MinPoint.X, bbox.MinPoint.Y, bbox.MinPoint.Z);
             IfcBoundingBox ifc_bbox = new IfcBoundingBox(min_point,
                 Math.Abs(bbox.MaxPoint.X - bbox.MinPoint.X),
                 Math.Abs(bbox.MaxPoint.Y - bbox.MinPoint.Y),
@@ -64,18 +63,18 @@ namespace dyn2ifc.IfcGeometry
         /// </summary>
         /// <param name="poly_curve">Autodesk.DesignScript.Geometry.PolyCurve</param>
         [dr.IsVisibleInDynamoLibrary(true)]
-        public as_IfcShapeRepresentation(dg.PolyCurve poly_curve)
+        public as_IfcShapeRepresentation(dyn2ifc.IfcDoc ifc_document, dg.PolyCurve poly_curve)
         {
             List<IfcCartesianPoint> points = new List<IfcCartesianPoint>();
 
-            points.Add(new IfcCartesianPoint(ifc_db, 
+            points.Add(new IfcCartesianPoint(ifc_document.ifc_db, 
                 poly_curve.Curves()[0].StartPoint.X, 
                 poly_curve.Curves()[0].StartPoint.Y,
                 poly_curve.Curves()[0].StartPoint.Z));
             for (int counter1 = 0; counter1< poly_curve.Curves().Count(); counter1++)
             {
                 dg.Curve curve = poly_curve.Curves()[counter1];
-                points.Add(new IfcCartesianPoint(ifc_db, curve.EndPoint.X, curve.EndPoint.Y, curve.EndPoint.Z));
+                points.Add(new IfcCartesianPoint(ifc_document.ifc_db, curve.EndPoint.X, curve.EndPoint.Y, curve.EndPoint.Z));
             }
             IfcPolyline ifc_pline = new IfcPolyline(points);
             this.ifc_IfcShapeRepresentation = new IfcShapeRepresentation(ifc_pline);
@@ -85,12 +84,12 @@ namespace dyn2ifc.IfcGeometry
         /// </summary>
         /// <param name="mesh">Autodesk.DesignScript.Geometry.Mesh</param>
         [dr.IsVisibleInDynamoLibrary(true)]
-        public as_IfcShapeRepresentation (dg.Mesh mesh)
+        public as_IfcShapeRepresentation (dyn2ifc.IfcDoc ifc_document, dg.Mesh mesh)
         {
             List<IfcCartesianPoint> ifc_points = new List<IfcCartesianPoint>();
             foreach (dg.Point dyn_point in mesh.VertexPositions)
             {
-                ifc_points.Add(new IfcCartesianPoint(ifc_db, dyn_point.X, dyn_point.Y, dyn_point.Z));
+                ifc_points.Add(new IfcCartesianPoint(ifc_document.ifc_db, dyn_point.X, dyn_point.Y, dyn_point.Z));
             }
             List<IfcFace> faces = new List<IfcFace>();
             foreach (dg.IndexGroup dyn_face in mesh.FaceIndices)
@@ -116,12 +115,11 @@ namespace dyn2ifc.IfcGeometry
         /// </summary>
         /// <param name="solid">Autodesk.DesignScript.Geometry.Solid</param>
         [dr.IsVisibleInDynamoLibrary(true)]
-        public as_IfcShapeRepresentation (dg.Solid solid)
+        public as_IfcShapeRepresentation (dyn2ifc.IfcDoc ifc_document, dg.Solid solid)
         {
             List<IfcFace> faces = new List<IfcFace>();
             foreach (dg.Face dyn_face in solid.Faces)
             {
-                
                 foreach (dg.Loop dyn_loop in dyn_face.Loops)
                 {
                     IfcFaceOuterBound bound;
@@ -135,7 +133,7 @@ namespace dyn2ifc.IfcGeometry
                             if (!dyn_points.Contains(coedge.StartVertex.PointGeometry)) dyn_points.Add(coedge.StartVertex.PointGeometry);
                             if (!dyn_points.Contains(coedge.EndVertex.PointGeometry)) dyn_points.Add(coedge.EndVertex.PointGeometry);
                         }
-                        List<IfcCartesianPoint> points = dyn_points.Select(a => new IfcCartesianPoint(ifc_db, a.X, a.Y, a.Z)).ToList();
+                        List<IfcCartesianPoint> points = dyn_points.Select(a => new IfcCartesianPoint(ifc_document.ifc_db, a.X, a.Y, a.Z)).ToList();
                         loop = new IfcPolyLoop(points);
                         bound = new IfcFaceOuterBound(loop, true);
                         faces.Add(new IfcFace(bound));
@@ -152,7 +150,7 @@ namespace dyn2ifc.IfcGeometry
         /// <param name="dyn_polyline">Autodesk.DesignScript.Geometry.PolyCurve</param>
         /// <param name="depth">double value of depth</param>
         [dr.IsVisibleInDynamoLibrary(true)]
-        public as_IfcShapeRepresentation(dg.PolyCurve polyCurve, double depth)
+        public as_IfcShapeRepresentation(dyn2ifc.IfcDoc ifc_document, dg.PolyCurve polyCurve, double depth)
         {
             List<Tuple<double, double, double>> points = new List<Tuple<double, double, double>>();
             List<IfcLineIndex> indexes = new List<IfcLineIndex>();
@@ -168,7 +166,7 @@ namespace dyn2ifc.IfcGeometry
                 indexes.Add(new IfcLineIndex(points_counter, points_counter + 1));
                 points_counter += 2;
             }
-            IfcIndexedPolyCurve polycurve = new IfcIndexedPolyCurve(new IfcCartesianPointList3D(ifc_db, points), indexes);
+            IfcIndexedPolyCurve polycurve = new IfcIndexedPolyCurve(new IfcCartesianPointList3D(ifc_document.ifc_db, points), indexes);
             IfcArbitraryClosedProfileDef arb_closed = new IfcArbitraryClosedProfileDef("area", polycurve);
             IfcExtrudedAreaSolid solid = new IfcExtrudedAreaSolid(arb_closed, depth);
             this.ifc_IfcShapeRepresentation = new IfcShapeRepresentation(solid);
