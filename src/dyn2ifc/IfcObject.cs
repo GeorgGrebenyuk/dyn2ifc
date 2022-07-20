@@ -8,11 +8,12 @@ using dg = Autodesk.DesignScript.Geometry;
 using dr = Autodesk.DesignScript.Runtime;
 
 using GeometryGym.Ifc;
-using static dyn2ifc.IfcFile.IfcDoc;
 
 namespace dyn2ifc
 {
-    [dr.IsVisibleInDynamoLibrary(true)]
+    /// <summary>
+    /// Class for combinind data (materials, properties, geometry) to setting them to IfcElement
+    /// </summary>
     public class IfcObject
     {
         /// <summary>
@@ -24,6 +25,7 @@ namespace dyn2ifc
         {
             return Guid.NewGuid().ToString();
         }
+        [dr.IsVisibleInDynamoLibrary(false)]
         [dr.MultiReturn("IfcBuildingElementProxy", "IfcOpeningElement")]
         public static Dictionary<string,string> ifc_classes_objects()
         {
@@ -31,7 +33,6 @@ namespace dyn2ifc
             {
                 { "IfcBuildingElementProxy","IfcBuildingElementProxy" },
                 { "IfcOpeningElement","IfcOpeningElement" }
-                
             };
         }
         /// <summary>
@@ -41,44 +42,46 @@ namespace dyn2ifc
         /// <param name="group"></param>
         /// <returns></returns>
         [dr.IsVisibleInDynamoLibrary(true)]
-        public static IfcElement to_IfcBuildingElementProxy(IfcShapeRepresentation ifcShapeRepresentation, IfcObjectDefinition group = null)
+        public static IfcElement to_IfcBuildingElementProxy(dyn2ifc.IfcDoc ifc_document, 
+            IfcShapeRepresentation ifcShapeRepresentation, IfcObjectDefinition group = null)
         {
-           if (group == null) return new IfcBuildingElementProxy(ifc_site, ifc_site.ObjectPlacement, new IfcProductDefinitionShape(ifcShapeRepresentation));
-           else return new IfcBuildingElementProxy(group, ifc_site.ObjectPlacement, new IfcProductDefinitionShape(ifcShapeRepresentation));
+           if (group == null) return new IfcBuildingElementProxy(ifc_document.ifc_site,
+               ifc_document.ifc_site.ObjectPlacement, new IfcProductDefinitionShape(ifcShapeRepresentation));
+           else return new IfcBuildingElementProxy(group, ifc_document.ifc_site.ObjectPlacement, 
+               new IfcProductDefinitionShape(ifcShapeRepresentation));
         }
         /// <summary>
-        /// Create IfcOpeningElement element from parent element (where will be cutting, using IfcRelVoidsElement). At first need parent elemet, where cut was created!
+        /// Create IfcOpeningElement element from parent element (where will be cutting, using IfcRelVoidsElement). 
+        /// At first need parent elemet, where cut was created!
         /// </summary>
         /// <param name="ifcShapeRepresentation">Use node Get_IfcFaceBasedSurfaceModel</param>
         /// <param name="parent_element"></param>
         /// <returns></returns>
         [dr.IsVisibleInDynamoLibrary(true)]
-        public static IfcElement to_IfcOpeningElement (IfcShapeRepresentation ifcShapeRepresentation, IfcElement parent_element)
+        public static IfcElement to_IfcOpeningElement (dyn2ifc.IfcDoc ifc_document, 
+            IfcShapeRepresentation ifcShapeRepresentation, IfcElement parent_element)
         {
-            IfcOpeningElement elem = new IfcOpeningElement(parent_element, ifc_site.ObjectPlacement, new IfcProductDefinitionShape(ifcShapeRepresentation));
+            IfcOpeningElement elem = new IfcOpeningElement(parent_element, ifc_document.ifc_site.ObjectPlacement, 
+                new IfcProductDefinitionShape(ifcShapeRepresentation));
             IfcRelVoidsElement parent_link = new IfcRelVoidsElement(parent_element, elem);
             return elem;
         }
         /// <summary>
-        /// Create IfcBuildingElementProxy by IfcShapeRepresentation (as IfcProductDefinitionShape) and 
-        /// couple of IfcPropertySingleValue; record it to ifc_database automatically
+        /// Link data with base IfcElement-structure (Name, Description GlobalId, IfcMaterial,IfcPropertySet)
         /// </summary>
         /// <param name="properties"></param>
         [dr.IsVisibleInDynamoLibrary(true)]
-        public IfcObject(IfcElement ifc_element, string GlobalId, string name, IfcMaterial material, string description = "", 
-            List<IfcPropertySingleValue> properties = null)
+        public IfcObject(IfcElement ifc_element, string GlobalId = null, string name = null, 
+            dyn2ifc.IfcMaterialSet material = null, string description = null,
+            IfcProperties properties = null)
         {
-            if (properties != null)
-            {
-                new IfcPropertySet(ifc_element, "ifc_properties", properties);
-            }
-            ifc_element.Name = name;
-            ifc_element.Description = description;
+            if (properties != null) new IfcPropertySet(ifc_element, "ifc_properties", properties.ifc_props);
+            if (GlobalId!= null) ifc_element.GlobalId = GlobalId;
+            if (name != null) ifc_element.Name = name;
+            if (description != null) ifc_element.Description = description;
             ifc_element.Guid = Guid.NewGuid();
-            ifc_element.GlobalId = GlobalId;
 
-            ifc_element.SetMaterial(material);
-
+            if (material != null) ifc_element.SetMaterial(material.material);
             //IfcRelAssociatesMaterial ass_material = new IfcRelAssociatesMaterial(material, new List<IfcElement> { ifc_element });
         }
     }
